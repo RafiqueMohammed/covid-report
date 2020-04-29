@@ -92,6 +92,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -123,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "covid-report-live"
+    }
+  },
+  "defaultProject": "covid-report-live",
+  "cli": {
+    "analytics": "01c7bc5c-2651-46d3-9ada-23ce63f23184"
+  }
 }

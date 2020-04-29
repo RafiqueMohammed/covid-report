@@ -1,0 +1,14 @@
+#parent-container {
+  display: flex;
+  flex-direction: column;
+//   justify-content: space-between;
+
+background-image: linear-gradient(0deg, #FF7697 40%, #ba68c8 160%);
+  :nth-child(0) {
+    flex-grow: 1;
+  }
+
+  :nth-child(2) {
+    flex-grow: 1;
+  }
+}

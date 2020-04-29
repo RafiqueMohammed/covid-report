@@ -1,0 +1,11 @@
+mat-toolbar {
+  justify-content: center;
+  background: rgba($color: #000000, $alpha: 0);
+  .title {
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-size: 1.8em;
+    color: #fff;
+    text-shadow: 4px 3px 4px #444;
+  }
+}
