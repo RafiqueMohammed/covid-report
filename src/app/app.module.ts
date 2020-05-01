@@ -8,6 +8,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { FragmentsModule } from './fragments/fragments.module';
 import {MatTableModule} from '@angular/material/table'
 import { HttpClientModule } from '@angular/common/http';
+import {ChartsModule} from 'ng2-charts';
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     FragmentsModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
