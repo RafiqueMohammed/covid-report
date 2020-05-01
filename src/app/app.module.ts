@@ -6,12 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './pages/home/home.component';
 import { FragmentsModule } from './fragments/fragments.module';
-import {MatTableModule} from '@angular/material/table';
-import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import {ChartsModule} from 'ng2-charts';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatCardModule} from '@angular/material/card';
+import { NgbModule,NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,12 +20,10 @@ import {MatCardModule} from '@angular/material/card';
     AppRoutingModule,
     BrowserAnimationsModule,
     FragmentsModule,
-    MatTableModule,
     HttpClientModule,
     ChartsModule,
-    FlexLayoutModule,
-    MatGridListModule,
-    MatCardModule
+    MatTableModule,
+    NgbCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

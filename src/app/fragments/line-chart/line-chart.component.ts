@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { Model } from '../../config/model';
@@ -38,9 +38,7 @@ export class LineChartComponent implements OnInit {
       ],
 
     },
-    legend: {
-      position: 'bottom'
-    },
+ 
     annotation: {
       annotations: [
 
@@ -76,19 +74,23 @@ export class LineChartComponent implements OnInit {
   ];
   public lineChartLegend = true;
   public lineChartType = 'line';
+  @Input() dataSource: any = {};
+  @Input() month: boolean =true;
   constructor() { }
 
   ngOnInit(): void {
+    this.totalStatistics = this.dataSource.statewise.shift();
+    console.log(this.dataSource.statewise, 'statewaise');
+    this.timewiseData = this.dataSource.cases_time_series;
+    this.stateWiseDataSource = this.dataSource.statewise;
+
+    if(this.month){
+this.drawGraphByMonth();
+    }else{
+      this.drawGraphByDay();
+    }
   }
-  getDashboardStats() {
-    // this.api.getStateWiseData().subscribe((response) => {
-    //   this.totalStatistics = response.statewise.shift();
-    //   console.log(response.statewise, 'statewaise');
-    //   this.timewiseData = response.cases_time_series;
-    //   this.stateWiseDataSource = response.statewise;
-    //   this.drawGraphByDay();
-    // });
-  }
+
   drawGraphByMonth() {
     // this.lineChartData = [
     //   { data: [0,this.totalStatistics.active], label: 'Active' },
@@ -127,12 +129,7 @@ export class LineChartComponent implements OnInit {
     console.log(this.lineChartData, 'this.lineChartData')
   }
   drawGraphByDay() {
-    // this.lineChartData = [
-    //   { data: [0,this.totalStatistics.active], label: 'Active' },
-    //   { data: [0, this.totalStatistics.recovered], label: 'Recovered' },
-    //   { data: [0, this.totalStatistics.deaths], label: 'Deaths' },
-    // ];
-    // this.lineChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
     const monthList = [];
     const monthCasesForConfirmed = [];
     const monthCasesForRecovered = [];
@@ -160,7 +157,5 @@ export class LineChartComponent implements OnInit {
       { data: monthCasesForDeaths, label: 'Deaths' },
     ];
     this.lineChartLabels = monthList;
-
-    console.log(this.lineChartData, 'this.lineChartData')
   }
 }

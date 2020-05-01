@@ -1,70 +1,83 @@
 <div *ngIf="isDataLoaded">
 
-  <div class="matchart-container">
-    <mat-card class="charts">
-      <div class="chart-container">
-        <div class="canvas-chart-for-mobile">
-          <canvas [colors]="pieChartColors" baseChart maintainAspectRatio='true' [data]="doughnutChartData"
-            [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
-          </canvas>
-        </div>
-    
-        <div class="canvas-chart-for-desktop">
-    
-          <canvas [colors]="pieChartColors" baseChart width="600" height="400" [data]="doughnutChartData"
-            [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
-          </canvas>
-        </div>
-    
-     
-    
-    
-      </div>
-      <div class="chart-labels">
-        <mat-card class="info-strip" color='primary'>
-          <div class="title">Confirmed</div>
-          <div class="count">{{totalStatistics.confirmed}}</div>
-        </mat-card>
-    
-        <mat-card class="info-strip" color='primary'>
-          <div class="title">Active</div>
-          <div class="count">{{totalStatistics.active}}</div>
-        </mat-card>
-    
-        <mat-card class="info-strip" color='primary'>
-          <div class="title">Recovered</div>
-          <div class="count">{{totalStatistics.recovered}}</div>
-        </mat-card>
-    
-        <mat-card class="info-strip" color='primary'>
-          <div class="title">Deaths</div>
-          <div class="count">{{totalStatistics.deaths}}</div>
-        </mat-card>
-      </div>
-    </mat-card>
-  </div>
+  <div class="card charts">
+    <div class="card-body">
 
-  <div class="page-content">
-    <mat-table [dataSource]="stateWiseDataSource"  style="width: 100%;">
+
+      <div class="row">
+        <div class="col-sm-12 col-md-8" style="min-height: 300px;">
+          <ngb-carousel style="outline: none;">
+                <ng-template ngbSlide>
+                  <canvas class="d-md-none" height="350" [colors]="pieChartColors" baseChart  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                </canvas>  
+                <canvas  class="d-none d-lg-block" [colors]="pieChartColors" baseChart  [data]="doughnutChartData"
+                [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+              </canvas> 
+                </ng-template>
+                <ng-template ngbSlide>
+                  <app-line-chart  [month]='false' [dataSource]='dataSource'></app-line-chart> 
+                </ng-template>
+                
+                </ngb-carousel>
+
+        </div>
+        <div class="col-sm-12 col-md-4" style="display: flex;align-items: center;justify-content: center;">
+          <div class="chart-labels">
+            <div class="info-strip card">
+              <div class="card-body">
+                <div class="title">Confirmed</div>
+                <div class="count">{{totalStatistics.confirmed}}</div>
+              </div>
+            </div>
+
+            <div class="info-strip card">
+              <div class="card-body">
+                <div class="title">Active</div>
+                <div class="count">{{totalStatistics.active}}</div>
+              </div>
+            </div>
+
+            <div class="info-strip card">
+              <div class="card-body">
+                <div class="title">Recovered</div>
+                <div class="count">{{totalStatistics.recovered}}</div>
+              </div>
+            </div>
+
+            <div class="info-strip card">
+              <div class="card-body">
+                <div class="title">Deaths</div>
+                <div class="count">{{totalStatistics.deaths}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="card">
+    <mat-table [dataSource]="stateWiseDataSource" style="width: 100%;">
 
       <ng-container matColumnDef="state" sticky>
-        <mat-header-cell *matHeaderCellDef style="width: 20%;">State</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef >STATE</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="confirmed">
-        <mat-header-cell *matHeaderCellDef>Confirmed</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>CNFRD</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.confirmed}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="active">
-        <mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>ACT</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.active}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="recovered">
-        <mat-header-cell *matHeaderCellDef>Recovered</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>RCRD</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.recovered}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="deaths">
-        <mat-header-cell *matHeaderCellDef>Deceased</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>DCSD</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.deaths}} </mat-cell>
       </ng-container>
       <mat-row mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-row>
@@ -72,4 +85,5 @@
     </mat-table>
 
   </div>
+
 </div>
