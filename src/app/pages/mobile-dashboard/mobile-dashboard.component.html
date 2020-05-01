@@ -1,0 +1,82 @@
+<div style="height: 100vh;">
+  <!-- rgb(53, 141, 224) -->
+  <div style="background-image:linear-gradient(50deg, #133966 10%,#184879 );
+    height: 55vh;
+    width: 112%;
+    position: absolute;
+    border-radius: 0 0 0 70%;
+    top: 0;
+    left: -12%;
+    overflow: hidden;"></div>
+
+  <div style="display: flex;justify-content: space-between;
+align-items: center; height: 60px;color: #fff;
+    padding: 16px;
+    position: relative;
+    margin-top: 12px;">
+    <div>
+      <mat-chip-list aria-label="Fish selection">
+        <mat-chip color='accent' (click)='showLastUpdated=!showLastUpdated'>
+          <mat-icon>history</mat-icon><span *ngIf='showLastUpdated'>Updated 20hrs ago</span>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+    <div>
+      <span style="font-weight: 300;
+    font-size: 1.6em;">COVID REPORT</span></div>
+  </div>
+
+  <div style="padding: 16px;color: #fff;position: relative;margin-top: 12px;margin-bottom: 12px;">
+    <div style="color:rgb(52, 112, 177);font-size: 0.9em;margin-bottom: 12px;">Last updated on 29-apr-2020</div>
+    <div style="font-size: 2.5em;font-weight: lighter;">Hello, Rafique</div>
+  </div>
+
+  <div class="house-of-cards">
+    <div class="house-card">
+
+    </div>
+    <div class="house-card">
+
+    </div>
+    <div class="house-card">
+
+    </div>
+    <div class="house-card">
+
+    </div>
+    <div class="house-card">
+
+    </div>
+  </div>
+
+  <!-- <div class="card">
+      <div class="card-body">
+          jahfo fcowuehc owhe coiu hewoiuchw oiehcwe coiw hec
+      </div>
+  </div> -->
+  <div style="position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: block;">
+    <app-line-chart *ngIf="isDataLoaded" [lineChartColors]='lineChartColors' [setHeight]='200' [showLegend]='false' [showYLabels]='false' [showXLabels]='false'
+      [month]='false' [dataSource]='dataSource'></app-line-chart>
+     
+      <div style="display: flex;justify-content:center">
+        <div style="width:300px;display: flex;justify-content:space-evenly"><button mat-mini-fab>
+            1D
+           </button>
+           <button mat-mini-fab>
+            1W
+           </button>
+           <button mat-mini-fab>
+            1M
+           </button>
+           <button mat-mini-fab>
+            All
+           </button></div>
+        
+      </div>
+     
+  </div>
+</div>

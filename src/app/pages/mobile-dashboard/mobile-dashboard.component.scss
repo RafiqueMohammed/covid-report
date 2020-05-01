@@ -1,0 +1,29 @@
+/* The animation code */
+@keyframes resizing {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100px;
+  }
+}
+::host #parent-container{
+    background-color: #E8F0FB !important;
+}
+.last-updated-chip {
+  animation: resizing 5s linear 2s infinite alternate;
+}
+
+.house-of-cards {
+    display: flex;
+    position: relative;
+    overflow: scroll;
+    scroll-behavior: smooth;
+  .house-card {
+    min-height: 30vh;
+    min-width: 35vw;
+    background-color: #ffffff;
+    margin: 16px;
+  }
+}

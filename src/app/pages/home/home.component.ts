@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Query } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { API } from '../../providers/webservice/api.service';
 import { ChartType } from 'chart.js';
 import { MultiDataSet, Label } from 'ng2-charts';

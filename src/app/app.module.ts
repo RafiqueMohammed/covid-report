@@ -8,12 +8,17 @@ import { HomeComponent } from './pages/home/home.component';
 import { FragmentsModule } from './fragments/fragments.module';
 import { HttpClientModule } from '@angular/common/http';
 import {ChartsModule} from 'ng2-charts';
-import { NgbModule,NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatTableModule} from '@angular/material/table';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import { MobileDashboardComponent } from './pages/mobile-dashboard/mobile-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    MobileDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,10 @@ import {MatTableModule} from '@angular/material/table';
     HttpClientModule,
     ChartsModule,
     MatTableModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    MatChipsModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
