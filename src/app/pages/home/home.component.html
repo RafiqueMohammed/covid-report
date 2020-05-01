@@ -1,29 +1,68 @@
-<div >
-  <div class="chart-container" >
-    <div class="canvas-chart-for-mobile" >
-      <canvas height="2" width="3" baseChart
-      maintainAspectRatio='true'
-      [datasets]="lineChartData"
-      [labels]="lineChartLabels"
-      [options]="lineChartOptions"
-      [colors]="lineChartColors"
-      [legend]="lineChartLegend"
-      [chartType]="lineChartType"></canvas>
-    </div>
-    
-    <div class="canvas-chart-for-desktop" >
+<div *ngIf="isDataLoaded">
 
-    <canvas class="canvas-chart-for-desktop" height="1" width="3" baseChart
-    maintainAspectRatio='true'
-    [datasets]="lineChartData"
-    [labels]="lineChartLabels"
-    [options]="lineChartOptions"
-    [colors]="lineChartColors"
-    [legend]="lineChartLegend"
-    [chartType]="lineChartType"></canvas>
-    </div>
-</div>
-  
+  <div class="matchart-container">
+    <mat-card class="charts">
+      <div class="chart-container">
+        <div class="canvas-chart-for-mobile">
+          <canvas [colors]="pieChartColors" baseChart maintainAspectRatio='true' [data]="doughnutChartData"
+            [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+          </canvas>
+        </div>
+    
+        <div class="canvas-chart-for-desktop">
+    
+          <canvas [colors]="pieChartColors" baseChart width="600" height="400" [data]="doughnutChartData"
+            [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+          </canvas>
+        </div>
+    
+     
+    
+        <!-- <mat-grid-list cols="2" rowHeight="200px">
+          [style.background]="'#8D1BA7'"
+    
+          <mat-grid-tile >
+            <div>Confirmed</div><br />
+            <h1>{{totalStatistics.confirmed}}</h1>
+          </mat-grid-tile>
+          <mat-grid-tile >
+            <div>Active</div><br />
+            <h1>{{totalStatistics.active}}</h1>
+          </mat-grid-tile>
+          <mat-grid-tile >
+            <div>Recovered</div><br />
+            <h1>{{totalStatistics.recovered}}</h1>
+          </mat-grid-tile>
+          <mat-grid-tile >
+            <div>Deaths</div><br />
+            <h1>{{totalStatistics.deaths}}</h1>
+          </mat-grid-tile>
+        </mat-grid-list> -->
+      </div>
+      <div class="chart-labels">
+        <mat-card class="info-strip" color='primary'>
+          <div class="title">Confirmed</div>
+          <div class="count">{{totalStatistics.confirmed}}</div>
+        </mat-card>
+    
+        <mat-card class="info-strip" color='primary'>
+          <div class="title">Confirmed</div>
+          <div class="count">{{totalStatistics.confirmed}}</div>
+        </mat-card>
+    
+        <mat-card class="info-strip" color='primary'>
+          <div class="title">Confirmed</div>
+          <div class="count">{{totalStatistics.confirmed}}</div>
+        </mat-card>
+    
+        <mat-card class="info-strip" color='primary'>
+          <div class="title">Confirmed</div>
+          <div class="count">{{totalStatistics.confirmed}}</div>
+        </mat-card>
+      </div>
+    </mat-card>
+  </div>
+
   <div class="page-content">
     <table mat-table [dataSource]="stateWiseDataSource" class="mat-elevation-z8" style="width: 100%;">
 
@@ -48,7 +87,7 @@
         <td mat-cell *matCellDef="let element"> {{element.deaths}} </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
     </table>
 
   </div>

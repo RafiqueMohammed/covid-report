@@ -2,18 +2,64 @@
     margin-left: 3%;
     margin-right: 3%;
 }
+.matchart-container{
+    display: flex;
+    justify-content: center;
+}
+.charts{
+    min-height: 55vh;
+    width: 70vw;
+    margin-bottom: 12px;
+}
 .chart-container{
-    padding: 2%;
+    position: absolute;
+}
+.chart-labels{
+    position: absolute;
+    top: 25%;
+    right: 8%;
 }
 .canvas-chart-for-mobile{
     display: none;
 }
+.info-strip{
+    margin:8px;
+    display: flex;
+    flex-direction: row;
+    max-width: 350px;
+    min-width: 300px;
+    justify-content: space-between;
+    background-image: linear-gradient(90deg,rgba(141, 27, 167) 40%,rgba(211, 74, 166));
+    .title{
+        font-size: 1.4em;
+    font-weight: lighter;
+    color: #fff;
+    text-transform: uppercase;
+    }
+    .count{
+        font-size: 4.5em;
+    font-weight: bolder;
+    color: #fff;
+    position: absolute;
+    right: 0px;
+    /* bottom: 10px; */
+    opacity: 0.5;
+    }
+}
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
+    .charts{
+        margin: 8px;
+        min-height: 65vh;
+        padding: 2px;
+        width: 100vw;
+    }
     .chart-container{
-        position: relative; 
-        height:20vh; 
-        width:90vw;
+        width: 96vw;
+    position: initial;
+    }
+    .chart-labels{
+        position:initial;
     }
     .canvas-chart-for-desktop{
         display: none;
@@ -22,7 +68,8 @@
         display: block;
     }
     .page-content{
-        margin-top: 15vh;
+        margin-left: 0;
+        margin-right: 0;
     }
   }
   
