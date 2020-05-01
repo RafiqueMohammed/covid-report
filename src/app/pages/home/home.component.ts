@@ -9,6 +9,7 @@ import { MultiDataSet, Label } from 'ng2-charts';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  dataSource: any;
   dashboardGraph: any;
   totalStatistics: any;
   stateWiseDataSource: any;
@@ -31,10 +32,11 @@ export class HomeComponent implements OnInit {
 
   getDashboardStats() {
     this.api.getStateWiseData().subscribe((response) => {
+      this.dataSource = response;
       this.totalStatistics = response.statewise.shift();
       console.log(response.statewise, 'statewaise');
       this.stateWiseDataSource = response.statewise;
-      this.isDataLoaded=true;
+      this.isDataLoaded = true;
       this.drawGraph();
     });
   }
@@ -42,6 +44,6 @@ export class HomeComponent implements OnInit {
 
   }
   drawGraph() {
-this.doughnutChartData=[this.totalStatistics.active,this.totalStatistics.recovered,this.totalStatistics.deaths]
+    this.doughnutChartData = [this.totalStatistics.active, this.totalStatistics.recovered, this.totalStatistics.deaths]
   }
 }

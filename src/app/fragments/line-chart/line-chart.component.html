@@ -1,24 +1,7 @@
-<div class="chart-container" >
-    <div class="canvas-chart-for-mobile" >
-      <canvas height="2" width="3" baseChart
-      maintainAspectRatio='true'
-      [datasets]="lineChartData"
-      [labels]="lineChartLabels"
-      [options]="lineChartOptions"
-      [colors]="lineChartColors"
-      [legend]="lineChartLegend"
-      [chartType]="lineChartType"></canvas>
-    </div>
-    
-    <div class="canvas-chart-for-desktop" >
+<div>
+  <canvas class="d-md-none" height="350" baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
+    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="true" [chartType]="'line'"></canvas>
+  <canvas class="d-none d-lg-block" baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
+    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="true" [chartType]="'line'"></canvas>
 
-    <canvas class="canvas-chart-for-desktop" height="1" width="3" baseChart
-    maintainAspectRatio='true'
-    [datasets]="lineChartData"
-    [labels]="lineChartLabels"
-    [options]="lineChartOptions"
-    [colors]="lineChartColors"
-    [legend]="lineChartLegend"
-    [chartType]="lineChartType"></canvas>
-    </div>
 </div>
