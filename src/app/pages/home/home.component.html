@@ -18,26 +18,7 @@
     
      
     
-        <!-- <mat-grid-list cols="2" rowHeight="200px">
-          [style.background]="'#8D1BA7'"
     
-          <mat-grid-tile >
-            <div>Confirmed</div><br />
-            <h1>{{totalStatistics.confirmed}}</h1>
-          </mat-grid-tile>
-          <mat-grid-tile >
-            <div>Active</div><br />
-            <h1>{{totalStatistics.active}}</h1>
-          </mat-grid-tile>
-          <mat-grid-tile >
-            <div>Recovered</div><br />
-            <h1>{{totalStatistics.recovered}}</h1>
-          </mat-grid-tile>
-          <mat-grid-tile >
-            <div>Deaths</div><br />
-            <h1>{{totalStatistics.deaths}}</h1>
-          </mat-grid-tile>
-        </mat-grid-list> -->
       </div>
       <div class="chart-labels">
         <mat-card class="info-strip" color='primary'>
@@ -46,49 +27,49 @@
         </mat-card>
     
         <mat-card class="info-strip" color='primary'>
-          <div class="title">Confirmed</div>
-          <div class="count">{{totalStatistics.confirmed}}</div>
+          <div class="title">Active</div>
+          <div class="count">{{totalStatistics.active}}</div>
         </mat-card>
     
         <mat-card class="info-strip" color='primary'>
-          <div class="title">Confirmed</div>
-          <div class="count">{{totalStatistics.confirmed}}</div>
+          <div class="title">Recovered</div>
+          <div class="count">{{totalStatistics.recovered}}</div>
         </mat-card>
     
         <mat-card class="info-strip" color='primary'>
-          <div class="title">Confirmed</div>
-          <div class="count">{{totalStatistics.confirmed}}</div>
+          <div class="title">Deaths</div>
+          <div class="count">{{totalStatistics.deaths}}</div>
         </mat-card>
       </div>
     </mat-card>
   </div>
 
   <div class="page-content">
-    <table mat-table [dataSource]="stateWiseDataSource" class="mat-elevation-z8" style="width: 100%;">
+    <mat-table [dataSource]="stateWiseDataSource"  style="width: 100%;">
 
-      <ng-container matColumnDef="state">
-        <th mat-header-cell *matHeaderCellDef>State</th>
-        <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+      <ng-container matColumnDef="state" sticky>
+        <mat-header-cell *matHeaderCellDef style="width: 20%;">State</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="confirmed">
-        <th mat-header-cell *matHeaderCellDef>Confirmed</th>
-        <td mat-cell *matCellDef="let element"> {{element.confirmed}} </td>
+        <mat-header-cell *matHeaderCellDef>Confirmed</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.confirmed}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="active">
-        <th mat-header-cell *matHeaderCellDef>Active</th>
-        <td mat-cell *matCellDef="let element"> {{element.active}} </td>
+        <mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.active}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="recovered">
-        <th mat-header-cell *matHeaderCellDef>Recovered</th>
-        <td mat-cell *matCellDef="let element"> {{element.recovered}} </td>
+        <mat-header-cell *matHeaderCellDef>Recovered</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.recovered}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="deaths">
-        <th mat-header-cell *matHeaderCellDef>Deceased</th>
-        <td mat-cell *matCellDef="let element"> {{element.deaths}} </td>
+        <mat-header-cell *matHeaderCellDef>Deceased</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.deaths}} </mat-cell>
       </ng-container>
-      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-    </table>
+      <mat-row mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-row>
+      <mat-row mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+    </mat-table>
 
   </div>
 </div>

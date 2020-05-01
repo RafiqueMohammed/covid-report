@@ -46,7 +46,22 @@
     opacity: 0.5;
     }
 }
-@media only screen and (max-width: 768px) {
+.mat-column-state{
+    flex: 0 0 30%;
+}
+.mat-column-confirmed{
+    flex: 0 0 16%;
+}
+.mat-column-active{
+    flex: 0 0 16%;
+}
+.mat-column-recovered{
+    flex: 0 0 16%;
+}
+.mat-column-deaths{
+    flex: 0 0 16%;
+}
+@media only screen and (max-width: 1024px) {
     /* For mobile phones: */
     .charts{
         margin: 8px;
