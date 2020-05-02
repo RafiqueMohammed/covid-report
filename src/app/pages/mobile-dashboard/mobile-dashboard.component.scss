@@ -41,8 +41,11 @@ app-show-spinner {
 }
 
 ::ng-deep .mat-tab-label {
-  height: 4px !important;
-}
+    height: 0px !important;
+  }
+  ::ng-deep .mat-tab-header {
+    border: none !important;
+  }
 
 .house-of-cards {
   display: flex;

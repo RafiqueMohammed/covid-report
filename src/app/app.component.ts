@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Session } from './providers/application/session/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'covid-report-live';
+
+  constructor(private session: Session, private router: Router) {
+    if (this.session.isFirstTime()) {
+      this.router.navigateByUrl('welcome');
+    }
+  }
 }

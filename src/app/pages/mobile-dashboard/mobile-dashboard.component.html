@@ -34,13 +34,13 @@ align-items: center; height: 60px;color: #fff;
 
   <div style="padding: 16px;color: #fff;position: relative;margin-top: 12px;margin-bottom: 12px;">
     <div style="color:rgb(52, 112, 177);font-size: 0.9em;margin-bottom: 12px;">Last updated on 29-apr-2020</div>
-    <div style="font-size: 2.5em;font-weight: lighter;">Hello, Rafique</div>
+    <div style="font-size: 2.5em;font-weight: lighter;">Hello, {{guestName}}</div>
   </div>
 
   <div class="house-of-cards">
     <div class="house-card">
       <app-show-spinner></app-show-spinner>
-      <div class="house-card-body">
+      <div class="house-card-body" *ngIf="isDataLoaded">
 
         <mat-icon>bar_chart</mat-icon>
         <div class="house-card-title">CONFIRMED</div>
@@ -50,7 +50,7 @@ align-items: center; height: 60px;color: #fff;
     </div>
     <div class="house-card">
       <app-show-spinner></app-show-spinner>
-      <div class="house-card-body">
+      <div class="house-card-body" *ngIf="isDataLoaded">
         <mat-icon>trending_up</mat-icon>
         <div class="house-card-title">ACTIVE</div>
         <div class="house-card-desc">{{helper.formatCount(totalStatistics.active)}}</div>
@@ -58,7 +58,7 @@ align-items: center; height: 60px;color: #fff;
     </div>
     <div class="house-card">
       <app-show-spinner></app-show-spinner>
-      <div class="house-card-body">
+      <div class="house-card-body" *ngIf="isDataLoaded">
         <mat-icon>favorite</mat-icon>
 
         <div class="house-card-title">RECOVERED</div>
@@ -67,7 +67,7 @@ align-items: center; height: 60px;color: #fff;
     </div>
     <div class="house-card">
       <app-show-spinner></app-show-spinner>
-      <div class="house-card-body">
+      <div class="house-card-body" *ngIf="isDataLoaded">
         <mat-icon>airline_seat_flat</mat-icon>
         <div class="house-card-title">DEATHS</div>
         <div class="house-card-desc">{{helper.formatCount(totalStatistics.deaths)}}</div>
@@ -76,14 +76,14 @@ align-items: center; height: 60px;color: #fff;
   </div>
 
   <!-- <div class="card">
-      <div class="card-body">
+      <div class="card-body" *ngIf="isDataLoaded">
           jahfo fcowuehc owhe coiu hewoiuchw oiehcwe coiw hec
       </div>
   </div> -->
 
   <mat-tab-group mat-stretch-tabs>
     <mat-tab>
-      <app-show-spinner></app-show-spinner>
+      <app-show-spinner style="position: fixed;"></app-show-spinner>
 
       <mat-table *ngIf="isDataLoaded" [dataSource]="stateWiseDataSource" style="width: 100%;">
 

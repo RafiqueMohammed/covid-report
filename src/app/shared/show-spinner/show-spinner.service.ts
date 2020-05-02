@@ -14,7 +14,7 @@ export class ShowSpinnerService {
       this.$observer.next(data);
     }
   }
-  stopSpinning(data: SpinnerModel = { show: true }) {
+  stopSpinning(data: SpinnerModel = { show: false }) {
     if (data !== null) {
       this.$observer.next(data);
     }

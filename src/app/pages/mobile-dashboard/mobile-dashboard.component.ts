@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/co
 import { API } from '../../providers/webservice/api.service';
 import { Helper } from '../../providers/application/utils/helper.service';
 import { ShowSpinnerService } from 'src/app/shared/show-spinner/show-spinner.service';
+import { Session } from 'src/app/providers/application/session/session.service';
 
 @Component({
   selector: 'app-mobile-dashboard',
@@ -15,17 +16,18 @@ export class MobileDashboardComponent implements OnInit, AfterViewInit {
   totalStatistics: any;
   stateWiseDataSource: any;
   isDataLoaded: boolean = false;
-
+  guestName: string = 'Stranger';
   columnsToDisplay = ['state', 'confirmed', 'active', 'recovered', 'deaths'];
   public lineChartColors = [];
-  constructor(private api: API, public helper: Helper, private spinnerService: ShowSpinnerService, private cref: ChangeDetectorRef
+  constructor(private api: API, public helper: Helper, private spinnerService: ShowSpinnerService,
+    private session: Session
   ) {
 
   }
 
   ngOnInit(): void {
     this.getDashboardStats();
-
+    this.guestName = this.session.getSession()['name'];
     this.lineChartColors = [
       { // active -theme color  rgba(16, 55, 98,0.2)
         backgroundColor: 'rgba(58, 125, 193,0.2)',
@@ -60,11 +62,14 @@ export class MobileDashboardComponent implements OnInit, AfterViewInit {
   getDashboardStats() {
 
     this.api.getStateWiseData().subscribe((response) => {
-      this.dataSource = response;
-      this.totalStatistics = response.statewise.shift();
-      this.stateWiseDataSource = response.statewise;
-      this.isDataLoaded = true;
-      this.spinnerService.stopSpinning()
+      // delaying intentionally
+      setTimeout(() => {
+        this.dataSource = response;
+        this.totalStatistics = response.statewise.shift();
+        this.stateWiseDataSource = response.statewise;
+        this.isDataLoaded = true;
+        this.spinnerService.stopSpinning();
+      }, 5000);
     });
   }
 
