@@ -13,7 +13,10 @@ import {MatTableModule} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MobileDashboardComponent } from './pages/mobile-dashboard/mobile-dashboard.component';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,13 +28,17 @@ import { MobileDashboardComponent } from './pages/mobile-dashboard/mobile-dashbo
     AppRoutingModule,
     BrowserAnimationsModule,
     FragmentsModule,
+    SharedModule,
     HttpClientModule,
     ChartsModule,
     MatTableModule,
     NgbCarouselModule,
     MatChipsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule,
+    MatProgressSpinnerModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 <div style="height: 100vh;">
   <!-- rgb(53, 141, 224) -->
   <div style="background-image:linear-gradient(50deg, #133966 10%,#184879 );
-    height: 55vh;
+    height: 50vh;
     width: 112%;
     position: absolute;
     border-radius: 0 0 0 70%;
@@ -14,7 +14,13 @@ align-items: center; height: 60px;color: #fff;
     padding: 16px;
     position: relative;
     margin-top: 12px;">
-    <div>
+    <div style="
+    display: flex;
+    justify-content: space-between;
+    align-items: center;;">
+      <button mat-mini-fab aria-label="Show or hide Graph" style="margin-right: 12px;">
+        <mat-icon>insert_chart</mat-icon>
+      </button>
       <mat-chip-list aria-label="Fish selection">
         <mat-chip color='accent' (click)='showLastUpdated=!showLastUpdated'>
           <mat-icon>history</mat-icon><span *ngIf='showLastUpdated'>Updated 20hrs ago</span>
@@ -33,19 +39,39 @@ align-items: center; height: 60px;color: #fff;
 
   <div class="house-of-cards">
     <div class="house-card">
+      <app-show-spinner></app-show-spinner>
+      <div class="house-card-body">
+
+        <mat-icon>bar_chart</mat-icon>
+        <div class="house-card-title">CONFIRMED</div>
+        <div class="house-card-desc">{{helper.formatCount(totalStatistics.confirmed)}}</div>
+      </div>
 
     </div>
     <div class="house-card">
-
+      <app-show-spinner></app-show-spinner>
+      <div class="house-card-body">
+        <mat-icon>trending_up</mat-icon>
+        <div class="house-card-title">ACTIVE</div>
+        <div class="house-card-desc">{{helper.formatCount(totalStatistics.active)}}</div>
+      </div>
     </div>
     <div class="house-card">
+      <app-show-spinner></app-show-spinner>
+      <div class="house-card-body">
+        <mat-icon>favorite</mat-icon>
 
+        <div class="house-card-title">RECOVERED</div>
+        <div class="house-card-desc">{{helper.formatCount(totalStatistics.recovered)}}</div>
+      </div>
     </div>
     <div class="house-card">
-
-    </div>
-    <div class="house-card">
-
+      <app-show-spinner></app-show-spinner>
+      <div class="house-card-body">
+        <mat-icon>airline_seat_flat</mat-icon>
+        <div class="house-card-title">DEATHS</div>
+        <div class="house-card-desc">{{helper.formatCount(totalStatistics.deaths)}}</div>
+      </div>
     </div>
   </div>
 
@@ -54,29 +80,58 @@ align-items: center; height: 60px;color: #fff;
           jahfo fcowuehc owhe coiu hewoiuchw oiehcwe coiw hec
       </div>
   </div> -->
-  <div style="position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  display: block;">
-    <app-line-chart *ngIf="isDataLoaded" [lineChartColors]='lineChartColors' [setHeight]='200' [showLegend]='false' [showYLabels]='false' [showXLabels]='false'
-      [month]='false' [dataSource]='dataSource'></app-line-chart>
-     
+
+  <mat-tab-group mat-stretch-tabs>
+    <mat-tab>
+      <app-show-spinner></app-show-spinner>
+
+      <mat-table *ngIf="isDataLoaded" [dataSource]="stateWiseDataSource" style="width: 100%;">
+
+        <ng-container matColumnDef="state" sticky>
+          <mat-header-cell *matHeaderCellDef>STATE</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="confirmed">
+          <mat-header-cell *matHeaderCellDef>CNFRD</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{helper.formatCount(element.confirmed)}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="active">
+          <mat-header-cell *matHeaderCellDef>ACT</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{helper.formatCount(element.active)}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="recovered">
+          <mat-header-cell *matHeaderCellDef>RCRD</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{helper.formatCount(element.recovered)}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="deaths">
+          <mat-header-cell *matHeaderCellDef>DCSD</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{helper.formatCount(element.deaths)}} </mat-cell>
+        </ng-container>
+        <mat-row mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-row>
+        <mat-row mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+      </mat-table>
+    </mat-tab>
+    <mat-tab>
+      <app-line-chart *ngIf="isDataLoaded" [lineChartColors]='lineChartColors' [setHeight]='200' [showLegend]='false'
+        [showYLabels]='false' [showXLabels]='false' [month]='false' [dataSource]='dataSource'></app-line-chart>
+
       <div style="display: flex;justify-content:center">
         <div style="width:300px;display: flex;justify-content:space-evenly"><button mat-mini-fab>
             1D
-           </button>
-           <button mat-mini-fab>
+          </button>
+          <button mat-mini-fab>
             1W
-           </button>
-           <button mat-mini-fab>
+          </button>
+          <button mat-mini-fab>
             1M
-           </button>
-           <button mat-mini-fab>
+          </button>
+          <button mat-mini-fab>
             All
-           </button></div>
-        
+          </button></div>
+
       </div>
-     
-  </div>
+
+    </mat-tab>
+  </mat-tab-group>
+
 </div>

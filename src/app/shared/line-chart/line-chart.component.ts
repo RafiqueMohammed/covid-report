@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { Model } from '../../config/model';
-import { NONE_TYPE } from '@angular/compiler';
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',

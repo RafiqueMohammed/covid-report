@@ -8,22 +8,83 @@
     width: 100px;
   }
 }
-::host #parent-container{
-    background-color: #E8F0FB !important;
+
+app-show-spinner {
+  z-index: 999;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: 250px;
+  align-items: center;
+  position: absolute;
+
 }
+
+::host #parent-container {
+  background-color: #E8F0FB !important;
+}
+
 .last-updated-chip {
   animation: resizing 5s linear 2s infinite alternate;
 }
 
-.house-of-cards {
-    display: flex;
-    position: relative;
-    overflow: scroll;
-    scroll-behavior: smooth;
-  .house-card {
-    min-height: 30vh;
-    min-width: 35vw;
-    background-color: #ffffff;
-    margin: 16px;
+@media only screen and (min-width: 800px) {
+  .house-of-cards {
+      justify-content: center;
   }
+}
+
+.house-of-cards::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+::ng-deep .mat-tab-label {
+  height: 4px !important;
+}
+
+.house-of-cards {
+  display: flex;
+  position: relative;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scroll-behavior: smooth;
+
+  .house-card {
+    min-height: 250px;
+    min-width: 150px;
+    background-color: #ffffff;
+    margin: 12px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .house-card-body {
+      display: flex;
+      flex-direction: column;
+
+      mat-icon {
+        height: 42px;
+        width: 42px;
+        font-size: 42px;
+      }
+
+      .house-card-title {
+        font-size: 1em;
+        margin-bottom: 6PX;
+      }
+
+      .house-card-desc {
+        font-size: 2.5em;
+        font-weight: lighter;
+
+      }
+    }
+  }
+
 }
