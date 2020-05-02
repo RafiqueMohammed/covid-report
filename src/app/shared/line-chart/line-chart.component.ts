@@ -90,7 +90,6 @@ export class LineChartComponent implements OnInit {
 
     };
     this.totalStatistics = this.dataSource.statewise.shift();
-    console.log(this.dataSource.statewise, 'statewaise');
     this.timewiseData = this.dataSource.cases_time_series;
     this.stateWiseDataSource = this.dataSource.statewise;
 
@@ -136,7 +135,6 @@ export class LineChartComponent implements OnInit {
     ];
     this.lineChartLabels = monthList;
 
-    console.log(this.lineChartLabels, 'this.lineChartLabels')
   }
   drawGraphByDay() {
 
@@ -169,7 +167,6 @@ export class LineChartComponent implements OnInit {
       { data: monthCasesForDeaths, label: 'Deaths' },
     ];
     this.lineChartLabels = monthList;
-    console.log(this.lineChartLabels, this.lineChartLabels.indexOf('April'), 'this.lineChartLabels')
 
   }
 }

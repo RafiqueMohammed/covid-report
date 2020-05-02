@@ -80,35 +80,38 @@ align-items: center; height: 60px;color: #fff;
           jahfo fcowuehc owhe coiu hewoiuchw oiehcwe coiw hec
       </div>
   </div> -->
-
+  <app-show-spinner *ngIf="!isDataLoaded"></app-show-spinner>
   <mat-tab-group mat-stretch-tabs>
     <mat-tab>
-      <app-show-spinner style="position: fixed;"></app-show-spinner>
-
+    
       <mat-table *ngIf="isDataLoaded" [dataSource]="stateWiseDataSource" style="width: 100%;">
 
         <ng-container matColumnDef="state" sticky>
-          <mat-header-cell *matHeaderCellDef>STATE</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="confirmed">
-          <mat-header-cell *matHeaderCellDef>CNFRD</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{helper.formatCount(element.confirmed)}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="active">
-          <mat-header-cell *matHeaderCellDef>ACT</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{helper.formatCount(element.active)}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="recovered">
-          <mat-header-cell *matHeaderCellDef>RCRD</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{helper.formatCount(element.recovered)}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="deaths">
-          <mat-header-cell *matHeaderCellDef>DCSD</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{helper.formatCount(element.deaths)}} </mat-cell>
-        </ng-container>
+            <mat-header-cell *matHeaderCellDef>STATE</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <mat-icon *ngIf="!element.expanded">keyboard_arrow_right</mat-icon>
+            <mat-icon *ngIf="element.expanded">keyboard_arrow_down</mat-icon>
+              {{element.state}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="confirmed">
+            <mat-header-cell *matHeaderCellDef><mat-icon>bar_chart</mat-icon></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{helper.formatCount(element.confirmed)}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="active">
+            <mat-header-cell *matHeaderCellDef><mat-icon>trending_up</mat-icon></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{helper.formatCount(element.active)}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="recovered">
+            <mat-header-cell *matHeaderCellDef><mat-icon>favorite</mat-icon></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{helper.formatCount(element.recovered)}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="deaths">
+            <mat-header-cell *matHeaderCellDef><mat-icon>airline_seat_flat</mat-icon></mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{helper.formatCount(element.deaths)}} </mat-cell>
+          </ng-container>
         <mat-row mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-row>
-        <mat-row mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+
+        <mat-row #stateRow mat-row *matRowDef="let row;let i=index; columns: columnsToDisplay;" (click)="onRowTouch(i,row)"></mat-row>
       </mat-table>
     </mat-tab>
     <mat-tab>
