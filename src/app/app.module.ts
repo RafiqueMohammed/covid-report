@@ -25,6 +25,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MobileDashboardComponent } from './pages/mobile-dashboard/mobile-dashboard.component';
 import { SharedModule } from './shared/shared.module';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +54,8 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
     MatSortModule,
     MatDialogModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 
   ],
   providers: [],

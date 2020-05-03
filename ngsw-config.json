@@ -1,0 +1,55 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/*.css",
+          "/*.js",
+          "/*.woff2"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "covidReportApi",
+      "urls": [
+        "**/*.json"
+      ],
+      "cacheConfig": {
+        "maxSize": 250,
+        "maxAge": "7d",
+        "strategy": "freshness"
+      }
+    },
+    {
+      "name": "cdnAssets",
+      "urls": [
+        "https://fonts.gstatic.com/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 250,
+        "maxAge": "30d",
+        "strategy": "performance"
+      }
+    }
+  ]
+}

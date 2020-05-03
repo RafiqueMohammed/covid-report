@@ -20,7 +20,7 @@ export class WelcomeComponent implements OnInit {
   }
   saveSession() {
     this.session.setFirstTimeVisit(false);
-    this.session.setGuestName(name);
+    this.session.setGuestName(this.guestName);
     this.router.navigateByUrl('');
   }
 }
