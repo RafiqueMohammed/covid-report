@@ -1,8 +1,8 @@
 <div class="welcome-container">
 
   <div class="welcome-content">
-    <span class="welcome-title">Hey Stranger!</span>
-    <span class="welcome-title-subtitle">What's your name?</span>
+    <span class="welcome-title">{{title}}</span>
+    <span class="welcome-title-subtitle">{{subtext}}</span>
     <mat-form-field color='accent'>
       <input placeholder="Keep it short" maxlength="11" (change)='enterName($event)' matInput name="guestName">
     </mat-form-field>

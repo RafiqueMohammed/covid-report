@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SelectCityComponent } from '../../shared/select-city/select-city.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PreferredCityComponent } from 'src/app/shared/preferred-city/preferred-city.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mobile-dashboard',
@@ -36,7 +37,8 @@ export class MobileDashboardComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('stateRow', { read: ViewContainerRef }) stateRow: QueryList<ViewContainerRef>;
   constructor(private api: API, public helper: Helper, private spinnerService: ShowSpinnerService,
-    public session: Session, private resolver: ComponentFactoryResolver, private dialog: MatDialog) {
+    public session: Session, private resolver: ComponentFactoryResolver, private dialog: MatDialog,
+    private nav:Router) {
 
   }
 
@@ -170,6 +172,9 @@ export class MobileDashboardComponent implements OnInit, AfterViewInit {
       }
     });
 
+  }
+  updateName(){
+    this.nav.navigateByUrl('welcome');
   }
 
 }
