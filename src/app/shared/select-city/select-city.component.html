@@ -1,0 +1,17 @@
+<div>
+  <h1 mat-dialog-title>Preferred city</h1>
+  <div mat-dialog-content>
+    <p>Select your city</p>
+    <mat-form-field style="width: 100%;">
+      <mat-select [formControl]='ctrl'>
+        <mat-option *ngFor="let city of cityList" [value]='city'>
+          {{city}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="selectedCity" cdkFocusInitial>Ok</button>
+  </div>
+</div>

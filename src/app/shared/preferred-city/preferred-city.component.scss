@@ -1,0 +1,35 @@
+.mini-house-cards {
+    width: 100%;
+    display: block;
+
+    .mini-house-card {
+      float: left;
+      width: 40vw;
+      height: 150px;
+      background-color: #164272;
+      color: #fff;
+      margin: 4px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2em;
+      flex-direction: column;
+      line-height: 30px;
+
+      .mini-house-card-body {
+        display: flex;
+        flex-direction: column;
+
+        .mini-house-card-title {
+          font-weight: lighter;
+        }
+
+        .mini-house-card-description {
+          font-weight: lighter;
+          font-size: 2.1em;
+        }
+      }
+
+    }
+  }

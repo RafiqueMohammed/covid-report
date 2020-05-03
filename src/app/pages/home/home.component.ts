@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   isDataLoaded: boolean = false;
   public doughnutChartLabels: Label[] = ['Active', 'Recovered', 'Deaths'];
   public doughnutChartData: MultiDataSet = [];
+  
   columnsToDisplay = ['state', 'confirmed', 'active', 'recovered', 'deaths'];
 
   public doughnutChartType: ChartType = 'doughnut';

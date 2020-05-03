@@ -19,7 +19,8 @@ export class WelcomeComponent implements OnInit {
     console.log(e.target.value, 'e');
   }
   saveSession() {
-    this.session.saveSession({ isFirstTime: false, name: this.guestName, skip: false });
+    this.session.setFirstTimeVisit(false);
+    this.session.setGuestName(name);
     this.router.navigateByUrl('');
   }
 }

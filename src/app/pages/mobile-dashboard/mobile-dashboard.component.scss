@@ -1,93 +1,167 @@
-/* The animation code */
-@keyframes resizing {
-  from {
-    width: 0
+.main-container {
+  .flex-center-align {
+    display: flex;
+    align-items: center;
   }
 
-  to {
-    width: 100px;
+  .flex-center-justify {
+    display: flex;
+    justify-content: center;
   }
-}
 
-app-show-spinner {
-  z-index: 999;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  min-height: 250px;
-  align-items: center;
-  position: absolute;
+  .flex-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .top-banner {
+    background-image: linear-gradient(50deg, #133966 10%, #184879);
+    height: 50vh;
+    width: 112%;
+    position: absolute;
+    border-radius: 0 0 0 70%;
+    top: 0;
+    left: -12%;
+    overflow: hidden;
+  }
 
-}
+  .header-container {
+    justify-content: space-between;
+    height: 60px;
+    color: #fff;
+    padding: 8px;
+    position: relative;
+    margin-top: 12px;
 
-::host #parent-container {
-  background-color: #E8F0FB !important;
-}
+    .header-content {
+      display: flex;
+      align-items: center;
+    }
 
-.last-updated-chip {
-  animation: resizing 5s linear 2s infinite alternate;
-}
+    .logo-content {
+      mat-icon {
+        font-size: 40px;
+        width: 40px;
+        height: 40px;
+      }
 
-@media only screen and (min-width: 800px) {
-  .house-of-cards {
+      span {
+        font-weight: 300;
+        font-size: 1.3em;
+        padding: 8px;
+      }
+
+    }
+  }
+
+  .guest-info {
+    padding: 16px;
+    color: #fff;
+    position: relative;
+    margin-top: 12px;
+    margin-bottom: 12px;
+
+    .guest-info-subtext {
+      color: rgb(52, 112, 177);
+      font-size: 0.9em;
+      margin-bottom: 12px;
+    }
+
+    .guest-info-text {
+      font-size: 2.5em;
+      font-weight: lighter;
+    }
+  }
+
+  app-show-spinner {
+    z-index: 999;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    position: absolute;
+
+  }
+
+
+  .last-updated-chip {
+    animation: resizing 5s linear 2s infinite alternate;
+  }
+
+  @media only screen and (min-width: 800px) {
+    .house-of-cards {
       justify-content: center;
+    }
+
+    .mini-house-cards {
+      width: 100%;
+      display: flex !important;
+
+      .mini-house-card {
+        float: none;
+      }
+    }
   }
-}
 
-.house-of-cards::-webkit-scrollbar {
-  /* WebKit */
-  width: 0;
-  height: 0;
-}
+  .house-of-cards::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+  }
 
-::ng-deep .mat-tab-label {
+  ::ng-deep .mat-tab-label {
     height: 0px !important;
   }
+
   ::ng-deep .mat-tab-header {
     border: none !important;
   }
 
-.house-of-cards {
-  display: flex;
-  position: relative;
-  overflow-x: scroll;
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
-  scroll-behavior: smooth;
 
-  .house-card {
-    min-height: 250px;
-    min-width: 150px;
-    background-color: #ffffff;
-    margin: 12px;
-    border-radius: 20px;
+  .house-of-cards {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scroll-behavior: smooth;
 
-    .house-card-body {
+    .house-card {
+      min-height: 250px;
+      min-width: 150px;
+      background-color: #ffffff;
+      margin: 12px;
+      border-radius: 20px;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-      mat-icon {
-        height: 42px;
-        width: 42px;
-        font-size: 42px;
-      }
+      .house-card-body {
+        display: flex;
+        flex-direction: column;
 
-      .house-card-title {
-        font-size: 1em;
-        margin-bottom: 6PX;
-      }
+        mat-icon {
+          height: 42px;
+          width: 42px;
+          font-size: 42px;
+        }
 
-      .house-card-desc {
-        font-size: 2.5em;
-        font-weight: lighter;
+        .house-card-title {
+          font-size: 1em;
+          margin-bottom: 6PX;
+        }
 
+        .house-card-desc {
+          font-size: 2.5em;
+          font-weight: lighter;
+
+        }
       }
     }
+
   }
 
 }

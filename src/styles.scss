@@ -6,6 +6,10 @@
     border-radius: 6px;
     box-shadow:2px 3px 2px rgba(5, 5, 5, 0.1);
 }
+button:focus {
+    outline: none !important;
+}
+
 .advance-pie{
         line-height: 35px !important;
     

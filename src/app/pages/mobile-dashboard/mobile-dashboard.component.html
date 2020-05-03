@@ -1,47 +1,37 @@
-<div style="height: 100vh;">
+<div style="height: 100vh;" class="main-container">
   <!-- rgb(53, 141, 224) -->
-  <div style="background-image:linear-gradient(50deg, #133966 10%,#184879 );
-    height: 50vh;
-    width: 112%;
-    position: absolute;
-    border-radius: 0 0 0 70%;
-    top: 0;
-    left: -12%;
-    overflow: hidden;"></div>
+  <div class="top-banner"></div>
 
-  <div style="display: flex;justify-content: space-between;
-align-items: center; height: 60px;color: #fff;
-    padding: 16px;
-    position: relative;
-    margin-top: 12px;">
-    <div style="
-    display: flex;
-    justify-content: space-between;
-    align-items: center;;">
-      <button mat-mini-fab aria-label="Show or hide Graph" style="margin-right: 12px;">
-        <mat-icon>insert_chart</mat-icon>
+  <div class="header-container flex-center-align">
+    <div class="header-content">
+
+      <button (click)="selectPreferredCity()" [disabled]='!isDataLoaded' mat-icon-button
+        aria-label="Select your preferred city" style="margin-right: 6px;">
+        <mat-icon>grain</mat-icon>
       </button>
-      <mat-chip-list aria-label="Fish selection">
-        <mat-chip color='accent' (click)='showLastUpdated=!showLastUpdated'>
-          <mat-icon>history</mat-icon><span *ngIf='showLastUpdated'>Updated 20hrs ago</span>
-        </mat-chip>
-      </mat-chip-list>
+
+      <button (click)="refreshData()" [disabled]='!isDataLoaded' mat-mini-fab aria-label="Show or hide Graph"
+        style="margin-right: 6px;">
+        <mat-icon>refresh</mat-icon>
+      </button>
+
     </div>
-    <div>
-      <span style="font-weight: 300;
-    font-size: 1.6em;">COVID REPORT</span></div>
+    <div class="header-content logo-content">
+      <mat-icon>timeline</mat-icon>
+      <span> COVID REPORT</span>
+
+    </div>
   </div>
 
-  <div style="padding: 16px;color: #fff;position: relative;margin-top: 12px;margin-bottom: 12px;">
-    <div style="color:rgb(52, 112, 177);font-size: 0.9em;margin-bottom: 12px;">Last updated on 29-apr-2020</div>
-    <div style="font-size: 2.5em;font-weight: lighter;">Hello, {{guestName}}</div>
+  <div class="guest-info">
+    <div class="guest-info-subtext">Last updated on 29-apr-2020</div>
+    <div class="guest-info-text">Hello, {{guestName}}</div>
   </div>
 
   <div class="house-of-cards">
     <div class="house-card">
       <app-show-spinner></app-show-spinner>
       <div class="house-card-body" *ngIf="isDataLoaded">
-
         <mat-icon>bar_chart</mat-icon>
         <div class="house-card-title">CONFIRMED</div>
         <div class="house-card-desc">{{helper.formatCount(totalStatistics.confirmed)}}</div>
@@ -75,66 +65,55 @@ align-items: center; height: 60px;color: #fff;
     </div>
   </div>
 
-  <!-- <div class="card">
-      <div class="card-body" *ngIf="isDataLoaded">
-          jahfo fcowuehc owhe coiu hewoiuchw oiehcwe coiw hec
-      </div>
-  </div> -->
   <app-show-spinner *ngIf="!isDataLoaded"></app-show-spinner>
-  <mat-tab-group mat-stretch-tabs>
-    <mat-tab>
-    
-      <mat-table *ngIf="isDataLoaded" [dataSource]="stateWiseDataSource" style="width: 100%;">
 
-        <ng-container matColumnDef="state" sticky>
-            <mat-header-cell *matHeaderCellDef>STATE</mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <mat-icon *ngIf="!element.expanded">keyboard_arrow_right</mat-icon>
-            <mat-icon *ngIf="element.expanded">keyboard_arrow_down</mat-icon>
-              {{element.state}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="confirmed">
-            <mat-header-cell *matHeaderCellDef><mat-icon>bar_chart</mat-icon></mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{helper.formatCount(element.confirmed)}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="active">
-            <mat-header-cell *matHeaderCellDef><mat-icon>trending_up</mat-icon></mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{helper.formatCount(element.active)}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="recovered">
-            <mat-header-cell *matHeaderCellDef><mat-icon>favorite</mat-icon></mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{helper.formatCount(element.recovered)}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="deaths">
-            <mat-header-cell *matHeaderCellDef><mat-icon>airline_seat_flat</mat-icon></mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{helper.formatCount(element.deaths)}} </mat-cell>
-          </ng-container>
-        <mat-row mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-row>
+<ng-template #cityContainer>
+  <app-preferred-city></app-preferred-city>
+</ng-template>
 
-        <mat-row #stateRow mat-row *matRowDef="let row;let i=index; columns: columnsToDisplay;" (click)="onRowTouch(i,row)"></mat-row>
-      </mat-table>
-    </mat-tab>
-    <mat-tab>
-      <app-line-chart *ngIf="isDataLoaded" [lineChartColors]='lineChartColors' [setHeight]='200' [showLegend]='false'
-        [showYLabels]='false' [showXLabels]='false' [month]='false' [dataSource]='dataSource'></app-line-chart>
 
-      <div style="display: flex;justify-content:center">
-        <div style="width:300px;display: flex;justify-content:space-evenly"><button mat-mini-fab>
-            1D
-          </button>
-          <button mat-mini-fab>
-            1W
-          </button>
-          <button mat-mini-fab>
-            1M
-          </button>
-          <button mat-mini-fab>
-            All
-          </button></div>
 
-      </div>
+  <div *ngIf="isDataLoaded">
+    <!-- <mat-table matSort matSortActive="active" (matSortChange)="sortData($event)" [dataSource]="stateWiseDataSource" style="width: 100%;"> -->
+    <mat-table [dataSource]="stateWiseDataSource" style="width: 100%;">
 
-    </mat-tab>
-  </mat-tab-group>
+      <ng-container matColumnDef="state" sticky>
+        <mat-header-cell *matHeaderCellDef style="font-size: 1.2em;">STATE</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-icon *ngIf="!element.expanded">keyboard_arrow_right</mat-icon>
+          <mat-icon *ngIf="element.expanded">keyboard_arrow_down</mat-icon>
+          {{element.state}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="confirmed">
+        <mat-header-cell *matHeaderCellDef style="font-size: 1.2em;">
+          <mat-icon>bar_chart</mat-icon>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{helper.formatCount(element.confirmed)}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="active">
+        <mat-header-cell *matHeaderCellDef style="font-size: 1.2em;">
+          <mat-icon>trending_up</mat-icon>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{helper.formatCount(element.active)}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="recovered">
+        <mat-header-cell *matHeaderCellDef style="font-size: 1.2em;">
+          <mat-icon>favorite</mat-icon>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{helper.formatCount(element.recovered)}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="deaths">
+        <mat-header-cell *matHeaderCellDef style="font-size: 1.2em;">
+          <mat-icon>airline_seat_flat</mat-icon>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{helper.formatCount(element.deaths)}} </mat-cell>
+      </ng-container>
+      <mat-row mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-row>
 
+      <mat-row #stateRow mat-row *matRowDef="let row;let i=index; columns: columnsToDisplay;"
+        (click)="onRowTouch(i,row,stateRow)">
+      </mat-row>
+    </mat-table>
+  </div>
 </div>

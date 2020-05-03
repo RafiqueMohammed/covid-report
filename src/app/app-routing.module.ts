@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
 import { MobileDashboardComponent } from './pages/mobile-dashboard/mobile-dashboard.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 
@@ -15,12 +14,8 @@ const routes: Routes = [
     component:WelcomeComponent
   },
   {
-    path:'old',
-    component:HomeComponent
-  },
-  {
     path:'**',
-    component:HomeComponent
+    component:MobileDashboardComponent
   }
 ];
 
