@@ -1,0 +1,22 @@
+<!-- <app-line-chart *ngIf="isDataLoaded" [lineChartColors]='lineChartColors' [setHeight]='200' [showLegend]='false'
+  [showYLabels]='false' [showXLabels]='false' [month]='false' [dataSource]='dataSource'></app-line-chart> -->
+
+<canvas [colors]="pieChartColors" baseChart [data]="doughnutChartData"
+  [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+</canvas>
+
+<div style="display: flex;justify-content:center">
+  <div style="width:300px;display: flex;justify-content:space-evenly"><button mat-mini-fab>
+      1D
+    </button>
+    <button mat-mini-fab>
+      1W
+    </button>
+    <button mat-mini-fab>
+      1M
+    </button>
+    <button mat-mini-fab>
+      All
+    </button></div>
+
+</div>

@@ -1,0 +1,44 @@
+<div *ngIf="display" class="card" style="margin-bottom: 16px;">
+  <div class="card-header" style="background:#fff">
+    <div style="display: flex;justify-content: space-between;align-items: center;">
+      <div style="font-size: 1.3em;text-transform: uppercase;">{{cityName}}
+      </div>
+      <div>
+
+        <button (click)="removePreferred()" mat-icon-button>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="mini-house-cards">
+      <div class="mini-house-card">
+        <div class="mini-house-card-body">
+
+          <span class="mini-house-card-title">CONFIRMED</span>
+          <span class="mini-house-card-description">{{cityData.confirmed}}</span>
+        </div>
+      </div>
+      <div class="mini-house-card">
+        <div class="mini-house-card-body">
+          <span class="mini-house-card-title">ACTIVE</span>
+          <span class="mini-house-card-description">{{cityData.active}}</span>
+        </div>
+      </div>
+      <div class="mini-house-card">
+        <div class="mini-house-card-body">
+          <span class="mini-house-card-title">RECOVERED</span>
+          <span class="mini-house-card-description">{{cityData.recovered}}</span>
+        </div>
+      </div>
+      <div class="mini-house-card">
+        <div class="mini-house-card-body">
+          <span class="mini-house-card-title">DEATHS</span>
+          <span class="mini-house-card-description">{{cityData.deceased}}</span>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+  </div>
+</div>

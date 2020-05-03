@@ -8,6 +8,15 @@ import { Model } from '../../config/model';
   styleUrls: ['./line-chart.component.scss']
 })
 export class LineChartComponent implements OnInit {
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+  @Input() dataSource: any = {};
+  @Input() month: boolean = true;
+  @Input() showYLabels: boolean = true;
+  @Input() showXLabels: boolean = true;
+  @Input() showAll: boolean = false;
+  @Input() showLegend: boolean = true;
+  @Input() setHeight: string = '350';
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -19,34 +28,8 @@ export class LineChartComponent implements OnInit {
   stateWiseDataSource: any = [];
   timewiseData: any = [];
   totalStatistics: any = {};
-  public lineChartOptions: (ChartOptions & { annotation: any }) = {
-    responsive: true,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          display: false
-        }
-      }],
-      yAxes: [
-        {
-          id: 'y-axis-0',
-          position: 'right',
-          gridLines: {
-            display: false
-          }
-        }
-      ],
-
-    },
- 
-    annotation: {
-      annotations: [
-
-      ],
-    },
-
-  };
-  public lineChartColors: Color[] = [
+  public lineChartOptions: (ChartOptions & { annotation: any });
+  @Input() lineChartColors: Color[] = [
     { // active -theme color
       backgroundColor: 'rgba(141, 27, 167, 0.1)',
       borderColor: '#8D1BA7',
@@ -72,21 +55,47 @@ export class LineChartComponent implements OnInit {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
-  public lineChartLegend = true;
-  public lineChartType = 'line';
-  @Input() dataSource: any = {};
-  @Input() month: boolean =true;
+
   constructor() { }
 
   ngOnInit(): void {
+    // init
+    this.lineChartOptions = {
+      responsive: true,
+      scales: {
+        xAxes: [{
+          display: this.showXLabels,
+          gridLines: {
+            display: false
+          }
+        }],
+        yAxes: [
+          {
+            id: 'y-axis-0',
+            display: this.showYLabels,
+            position: 'right',
+            gridLines: {
+              display: false
+            }
+          }
+        ],
+
+      },
+
+      annotation: {
+        annotations: [
+
+        ],
+      },
+
+    };
     this.totalStatistics = this.dataSource.statewise.shift();
-    console.log(this.dataSource.statewise, 'statewaise');
     this.timewiseData = this.dataSource.cases_time_series;
     this.stateWiseDataSource = this.dataSource.statewise;
 
-    if(this.month){
-this.drawGraphByMonth();
-    }else{
+    if (this.month) {
+      this.drawGraphByMonth();
+    } else {
       this.drawGraphByDay();
     }
   }
@@ -126,7 +135,6 @@ this.drawGraphByMonth();
     ];
     this.lineChartLabels = monthList;
 
-    console.log(this.lineChartData, 'this.lineChartData')
   }
   drawGraphByDay() {
 
@@ -142,12 +150,14 @@ this.drawGraphByMonth();
         monthCasesForRecovered[_monthPos] = parseInt(monthCasesForRecovered[_monthPos]) + parseInt(itemBydate.dailyrecovered);
         monthCasesForDeaths[_monthPos] = parseInt(monthCasesForDeaths[_monthPos]) + parseInt(itemBydate.dailydeceased);
       } else {
-        monthList.push(_stripMonth);
-        _monthPos = monthList.indexOf(_stripMonth);
+        if (['january', 'february', 'march'].indexOf(_stripMonth.split(' ')[1].toLowerCase()) == -1) {
+          monthList.push(_stripMonth);
+          _monthPos = monthList.indexOf(_stripMonth);
 
-        monthCasesForConfirmed[_monthPos] = (itemBydate.dailyconfirmed);
-        monthCasesForRecovered[_monthPos] = (itemBydate.dailyrecovered);
-        monthCasesForDeaths[_monthPos] = (itemBydate.dailydeceased);
+          monthCasesForConfirmed[_monthPos] = (itemBydate.dailyconfirmed);
+          monthCasesForRecovered[_monthPos] = (itemBydate.dailyrecovered);
+          monthCasesForDeaths[_monthPos] = (itemBydate.dailydeceased);
+        }
       }
     });
 
@@ -157,5 +167,6 @@ this.drawGraphByMonth();
       { data: monthCasesForDeaths, label: 'Deaths' },
     ];
     this.lineChartLabels = monthList;
+
   }
 }

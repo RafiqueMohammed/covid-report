@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Query } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { API } from '../../providers/webservice/api.service';
 import { ChartType } from 'chart.js';
 import { MultiDataSet, Label } from 'ng2-charts';
@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   isDataLoaded: boolean = false;
   public doughnutChartLabels: Label[] = ['Active', 'Recovered', 'Deaths'];
   public doughnutChartData: MultiDataSet = [];
+  
   columnsToDisplay = ['state', 'confirmed', 'active', 'recovered', 'deaths'];
 
   public doughnutChartType: ChartType = 'doughnut';

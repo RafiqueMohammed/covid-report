@@ -7,31 +7,51 @@ import { LocalStorage } from '../storage/local-storage.service';
 })
 export class Session {
 
-  private USER_INFO = 'user_info';
-  private IS_LOGGED_IN = 'active';
-  private default_userInfo: LoggedUser = { active: false, cecID: '',roles:'',rolesInfo:{} };
+  private DEFAULT_INFO: GuestInfo = { name: 'Guest', isFirstTime: true, skip: false, preferred_city: '' };
+  private GUEST_INFO = 'guest_info';
+  private IS_FIRST_TIME = 'isFirstTime';
+  private PREFERRED_CITY = 'preferred_city';
+  private GUEST_NAME = 'name';
   constructor(private storage: LocalStorage) { }
 
-  public saveSession(_data: LoggedUser) {
-    this.storage.saveAsString(this.USER_INFO, _data);
+  public saveSession(_data: GuestInfo) {
+    this.storage.saveAsString(this.GUEST_INFO, _data);
   }
-
-  public getSession(): LoggedUser {
-    // const _s = (this.storage.get(this.USER_INFO)) ? this.storage.get(this.USER_INFO) : {};
-    return (this.storage.get(this.USER_INFO)) ? JSON.parse(this.storage.get(this.USER_INFO)) : this.default_userInfo;
+  public getSession(): GuestInfo {
+    return (this.storage.get(this.GUEST_INFO)) ? JSON.parse(this.storage.get(this.GUEST_INFO)) : this.DEFAULT_INFO;
   }
-  public clearAll(){
-    this.storage.saveAsString(this.USER_INFO, {});
+  public clearAll() {
+    this.storage.saveAsString(this.GUEST_INFO, this.DEFAULT_INFO);
   }
-
-  public isLoggedIn() {
-    return this.getSession()[this.IS_LOGGED_IN];
+  public getGuestName() {
+    return this.getSession()[this.GUEST_NAME];
+  }
+  public setGuestName(name) {
+    const _data = this.getSession();
+    _data[this.GUEST_NAME] = name;
+    this.storage.saveAsString(this.GUEST_INFO, _data);
+  }
+  public setFirstTimeVisit(firstTime) {
+    const _data = this.getSession();
+    _data[this.IS_FIRST_TIME] = firstTime;
+    this.storage.saveAsString(this.GUEST_INFO, _data);
+  }
+  public getPreferredCity() {
+    return this.getSession()[this.PREFERRED_CITY];
+  }
+  public setPreferredCity(city) {
+    const _data = this.getSession();
+    _data[this.PREFERRED_CITY] = city;
+    this.storage.saveAsString(this.GUEST_INFO, _data);
+  }
+  public isFirstTime() {
+    return this.getSession()[this.IS_FIRST_TIME];
   }
 }
 
-export interface LoggedUser {
-  cecID: string;
-  active: boolean;
-  roles:string;
-  rolesInfo:any
+export interface GuestInfo {
+  name: string;
+  preferred_city: string;
+  skip: boolean;
+  isFirstTime: boolean;
 }

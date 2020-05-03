@@ -1,0 +1,27 @@
+<mat-table *ngIf="loaded" [dataSource]="cityRows" style="width: 100%;padding: 12px;
+background: #eee;">
+
+    <ng-container matColumnDef="state" sticky>
+      <mat-header-cell *matHeaderCellDef>CITY</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="confirmed">
+      <mat-header-cell *matHeaderCellDef><mat-icon>bar_chart</mat-icon></mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{helper.formatCount(element.confirmed)}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef><mat-icon>trending_up</mat-icon></mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{helper.formatCount(element.active)}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="recovered">
+      <mat-header-cell *matHeaderCellDef><mat-icon>favorite</mat-icon></mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{helper.formatCount(element.recovered)}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="deaths">
+      <mat-header-cell *matHeaderCellDef><mat-icon>airline_seat_flat</mat-icon></mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{helper.formatCount(element.deceased)}} </mat-cell>
+    </ng-container>
+    <mat-row mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-row>
+
+    <mat-row #stateRow mat-row *matRowDef="let row;let i=index; columns: columnsToDisplay;" ></mat-row>
+  </mat-table>

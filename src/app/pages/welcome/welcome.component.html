@@ -1,0 +1,21 @@
+<div class="welcome-container">
+
+  <div class="welcome-content">
+    <span class="welcome-title">Hey Stranger!</span>
+    <span class="welcome-title-subtitle">What's your name?</span>
+    <mat-form-field color='accent'>
+      <input (change)='enterName($event)' matInput name="guestName">
+    </mat-form-field>
+    <div style="position: absolute;align-items: center; bottom: 30px;display: flex;justify-content: center;flex-direction: column;">
+        <span style="font-size: 13px;">Your name will be saved on your phone. so it's safe</span>
+      <button (click)='saveSession()' mat-fab>
+        <mat-icon  *ngIf="guestName==''">close</mat-icon>
+        <mat-icon  *ngIf="guestName!==''">keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+
+
+  <div></div>
+
+</div>
