@@ -1,6 +1,7 @@
 {
   "name": "covid-report-live",
-  "version": "0.0.0",
+  "short_name": "Covid Report",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
