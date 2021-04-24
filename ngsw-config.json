@@ -11,10 +11,12 @@
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
-          "/*.js"
+          "/*.js",
+          "/*.woff2"
         ]
       }
-    }, {
+    },
+    {
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
@@ -23,6 +25,30 @@
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "covidReportApi",
+      "urls": [
+        "**/*.json"
+      ],
+      "cacheConfig": {
+        "maxSize": 250,
+        "maxAge": "7d",
+        "strategy": "freshness"
+      }
+    },
+    {
+      "name": "cdnAssets",
+      "urls": [
+        "https://fonts.gstatic.com/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 250,
+        "maxAge": "30d",
+        "strategy": "performance"
       }
     }
   ]

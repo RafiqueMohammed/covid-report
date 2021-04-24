@@ -9,9 +9,13 @@ import { Router } from '@angular/router';
 })
 export class WelcomeComponent implements OnInit {
   guestName: string = '';
-  constructor(private session: Session,private router:Router) { }
+  title = 'Hey Stranger!';
+  subtext = `What's your name?`;
+  constructor(private session: Session, private router: Router) { }
 
   ngOnInit(): void {
+    this.title = (this.session.getGuestName()) ? '' : 'Hey Stranger!';
+    this.subtext = (this.session.getGuestName()) ? 'Enter your name' : `What's your name?`;
   }
 
   enterName(e: any) {
@@ -20,8 +24,11 @@ export class WelcomeComponent implements OnInit {
     
   }
   saveSession() {
-    this.session.setFirstTimeVisit(false);
-    this.session.setGuestName(this.guestName);
+
+    if (this.guestName) {
+      this.session.setFirstTimeVisit(false);
+      this.session.setGuestName(this.guestName);
+    }
     this.router.navigateByUrl('');
   }
 }

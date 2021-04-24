@@ -1,7 +1,7 @@
 {
-  "name": "covid-report-live",
+  "name": "Covid Report",
   "short_name": "covid-report-live",
-  "theme_color": "#1976d2",
+  "theme_color": "#133966",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
