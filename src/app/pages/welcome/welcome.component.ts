@@ -17,10 +17,11 @@ export class WelcomeComponent implements OnInit {
   enterName(e: any) {
     this.guestName = e.target.value;
     console.log(e.target.value, 'e');
+    
   }
   saveSession() {
     this.session.setFirstTimeVisit(false);
-    this.session.setGuestName(name);
+    this.session.setGuestName(this.guestName);
     this.router.navigateByUrl('');
   }
 }
