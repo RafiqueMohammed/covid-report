@@ -4,7 +4,9 @@
     <span class="welcome-title">{{title}}</span>
     <span class="welcome-title-subtitle">{{subtext}}</span>
     <mat-form-field color='accent'>
-      <input placeholder="Keep it short" maxlength="11" (change)='enterName($event)' matInput name="guestName">
+
+      <input (change)='enterName($event)' autocomplete="off" matInput name="guestName">
+      
     </mat-form-field>
     <div style="position: absolute;align-items: center; bottom: 30px;display: flex;justify-content: center;flex-direction: column;">
         <span style="font-size: 13px;">Your data will be saved on your phone. so it's safe</span>

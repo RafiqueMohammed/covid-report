@@ -49,7 +49,8 @@ export class MobileDashboardComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit() {
-    setTimeout(() => { this.spinnerService.startSpinning();
+    setTimeout(() => {
+      this.spinnerService.startSpinning();
     }, 0)
   }
   getDashboardStats() {
@@ -176,5 +177,7 @@ export class MobileDashboardComponent implements OnInit, AfterViewInit {
   updateName(){
     this.nav.navigateByUrl('welcome');
   }
+
+
 
 }
