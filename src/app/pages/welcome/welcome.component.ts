@@ -14,7 +14,7 @@ export class WelcomeComponent implements OnInit {
   constructor(private session: Session, private router: Router) { }
 
   ngOnInit(): void {
-    this.title = (this.session.getGuestName()) ? '' : 'Hey Stranger!';
+    this.title = 'Hey Stranger!';
     this.subtext = (this.session.getGuestName()) ? 'Enter your name' : `What's your name?`;
   }
 
